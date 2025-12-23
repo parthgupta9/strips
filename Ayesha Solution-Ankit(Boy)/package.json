@@ -1,0 +1,19 @@
+{
+  "name": "tiger-hero-pdf",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    
+    "express": "^5.2.1",
+    "puppeteer": "^24.33.1"
+  }
+}
