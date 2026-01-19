@@ -21,6 +21,13 @@
   font-weight: bold;
   font-style: normal;
 }
+@font-face{
+  font-family:"khand";
+  src:url("https://res.cloudinary.com/dtkyyuhzx/raw/upload/v1768833290/Khand-Bold_gmi7uz.ttf")
+  format("opentype");
+  font-weight:600;
+  font-style:normal;
+}
 
 
     /* RESET */
@@ -46,7 +53,10 @@ body, html {
       font-style: italic;
       margin-left: 20px;
       color: #7a2c91;
-      margin-bottom: -2px;
+      margin-top: 0;            /* prevent collapsed top margin gap */
+      margin-bottom: -2px;      /* tuck closer to image */
+      position: relative;       /* create stacking context for z-index */
+      z-index: 20;              /* ensure title renders above panels */
       
     }
 
@@ -68,9 +78,10 @@ body, html {
     .panel img {
       width: 100%;
       height: auto;
-      max-height: 1050px;
+      max-height: 1240px;
       display: block;
       border-radius: 6px;
+      margin-top: -50px;
     }
     /* ================= SPEECH BUBBLE OVERLAYS ================= */
     .speech-bubble-overlay {
@@ -109,13 +120,13 @@ body, html {
     /* Added text styling for speech bubbles */
     .bubble-text {
       position: absolute;
-     font-family: "MyComicFont", 'sans-serif';
+     font-family: "khand", 'sans-serif';
       transform: translate(-50%, -50%);
       
     
     }
     .first{
-      font-family: "MyComicFont", 'sans-serif';
+      font-family: "khand", 'sans-serif';
 font-size: 16px;
 font-weight: 550;
 font-style: italic;
@@ -124,7 +135,7 @@ top: 50%;
 width: 70%;
     }
     .second{
-        font-family: "MyComicFont", "Comic Sans MS";
+        font-family: "khand", "Comic Sans MS";
 font-size: 22px;
 font-weight: 500;
 font-style: italic;
@@ -188,14 +199,14 @@ align-items: center;
   <!-- NAME POPUP -->
   
 
-  <h1 class="title">Tiger Hero {{NAME}}</h1>
+  <h1 class="title">टाइगर हीरो {{NAME}}</h1>
 
   <section class="comic">
     <!-- COMIC PANEL WITH OVERLAYS -->
     <div class="panel">
       <!-- Main Comic Image -->
       <img 
-        src="https://res.cloudinary.com/dtkyyuhzx/image/upload/v1768819290/d264b946-e946-4c9c-9f21-a75b3057f7db.png" 
+        src="https://res.cloudinary.com/dtkyyuhzx/image/upload/v1768822479/febbc899-e67f-4e1b-b783-34ca1c5a831b.png" 
         alt="Tiger Hero Comic"
       />
       
@@ -205,7 +216,7 @@ align-items: center;
           src="https://res.cloudinary.com/dhuvclibj/image/upload/v1766571881/first_okrwve.png" 
           alt="Speech Bubble Panel 3"
         />
-        <div class="bubble-text first">BUT {{NAME}} SUPPORTED HER ONE DAY HE GOT ALL HIS CLASSMATES TO COLOUR THEIR HAIR WHITE</div>
+        <div class="bubble-text first">उसने अपने बालों पे सफेद रंग लगा दिया और अपने दोस्तों को भी यही करने को कहा</div>
       </div>
       
       <!-- Added text content inside speech bubble on Panel 5 -->
@@ -214,7 +225,7 @@ align-items: center;
           src="https://res.cloudinary.com/dhuvclibj/image/upload/v1766572070/second_yvq0gs.png" 
           alt="Speech Bubble Panel 5"
         />
-        <div class="bubble-text second">TIGER HERO {{NAME}}! YOU ARE MY TIGER HERO</div>
+        <div class="bubble-text second">शुक्रिया {{NAME}}! तुम मेरे टाइगर हीरो हो।</div>
       </div>
 
 

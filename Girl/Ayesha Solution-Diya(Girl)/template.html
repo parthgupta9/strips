@@ -7,7 +7,7 @@
   <style>
 
 @font-face {
-  font-family: "MyComicFont";
+  font-family: "khand";
   src: url("https://res.cloudinary.com/dtkyyuhzx/raw/upload/v1766118079/Comico_kudbyw.otf")
        format("opentype");
   font-weight: normal;
@@ -20,6 +20,13 @@
        format("opentype");
   font-weight: bold;
   font-style: normal;
+}
+@font-face{
+  font-family:"khand";
+  src:url("https://res.cloudinary.com/dtkyyuhzx/raw/upload/v1768833290/Khand-Bold_gmi7uz.ttf")
+  format("opentype");
+  font-weight:600;
+  font-style:normal;
 }
 
 
@@ -46,8 +53,10 @@ body, html {
       font-style: italic;
       margin-left: 20px;
       color: #7a2c91;
-      margin-bottom: -2px;
-      margin-top: -12px;
+      margin-top: 0;            /* prevent collapsed top margin gap */
+      margin-bottom: -2px;      /* tuck closer to image */
+      position: relative;       /* create stacking context for z-index */
+      z-index: 20;              /* ensure title renders above panels */
       
     }
 
@@ -69,9 +78,10 @@ body, html {
     .panel img {
       width: 100%;
       height: auto;
-      max-height: 1080px;
+      max-height: 1240px;
       display: block;
       border-radius: 6px;
+      margin-top: -50px;
     }
     /* ================= SPEECH BUBBLE OVERLAYS ================= */
     .speech-bubble-overlay {
@@ -143,7 +153,7 @@ body, html {
 }
 
     .first{
-      font-family: "MyComicFont", 'sans-serif';
+      font-family: "khand", 'sans-serif';
 font-size: 18px;
 font-weight: 500;
 font-style: italic;
@@ -152,7 +162,7 @@ top: 48%;
 width: 80%;
     }
     .second{
-        font-family: "MyComicFont", "Comic Sans MS";
+        font-family: "khand", "Comic Sans MS";
 font-size: 18px;
 font-weight: 500;
 font-style: italic;
@@ -162,7 +172,7 @@ width: 80%;
 
     }
      .third{
-        font-family: "MyComicFont", "Comic Sans MS";
+        font-family: "khand", "Comic Sans MS";
 font-size: 16px;
 font-weight: 500;
 color: #783787;
@@ -173,7 +183,7 @@ font-style: italic;
 align-items: center;
     }
 .fourth{
-    font-family: "MyComicFont", "Comic Sans MS";
+    font-family: "khand", "Comic Sans MS";
 font-size: 20px;
 font-weight: 500;
 font-style: italic;
@@ -236,7 +246,7 @@ width: 50%;
   <!-- NAME POPUP -->
   
 
-  <h1 class="title">Tiger Hero {{NAME}}</h1>
+  <h1 class="title">टाइगर हीरो {{NAME}}</h1>
 
   <section class="comic">
     <!-- COMIC PANEL WITH OVERLAYS -->
@@ -253,7 +263,7 @@ width: 50%;
           src="https://res.cloudinary.com/dhuvclibj/image/upload/v1766574871/Bubbles_BOY_1_siw_1_izpbn8.png" 
           alt="Speech Bubble Panel 3"
         />
-      <div class="bubble-text first">{{NAME}}, AYESHA'S FRIEND,FELT HER PLIGHT AND DECIDED WITH THE OTHER STUDENTS,ENOUGH IS ENOUGH!</div>
+      <div class="bubble-text first">आयशा की सहेली {{NAME}} ने उसके दर्द को महसूस किया। और दूसरे बच्चों के साथ कुछ करने को सोचा। </div>
       </div>
       
       <!-- Added text content inside speech bubble on Panel 5 -->
@@ -269,14 +279,14 @@ width: 50%;
           src="https://res.cloudinary.com/dhuvclibj/image/upload/v1766574870/Bubbles_BOY_1_siw_2_i10ycx.png" 
           alt="Speech Bubble Panel 5"
         />
-        <div class="bubble-text second">DURING AN ESSAY TEST,{{NAME}} AND HER FRIENDWROTE ABOUT AYESHA'S PLIGHT</div>
+        <div class="bubble-text second">निबंध परीक्षा के समय, {{NAME}} और उसके दोस्तों ने आयशा के दर्द के बारे में लिखा।</div>
       </div>
  <div class="speech-bubble-overlay bubble-panel-9">
         <img 
           src="https://res.cloudinary.com/dhuvclibj/image/upload/v1766574871/Bubbles_BOY_1_siw_3_xq3ton.png" 
           alt="Speech Bubble Panel 5"
         />
-        <div class="bubble-text fourth">TIGER HERO {{NAME}}! YOU ARE MY TIGER HERO</div>
+        <div class="bubble-text fourth">शुक्रिया {{NAME}}! तुम मेरे टाइगर हीरो हो।</div>
       </div>
 
     </div>

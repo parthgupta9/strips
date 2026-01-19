@@ -7,7 +7,7 @@
   <style>
 
 @font-face {
-  font-family: "MyComicFont";
+  font-family: "khand";
   src: url("https://res.cloudinary.com/dtkyyuhzx/raw/upload/v1766118079/Comico_kudbyw.otf")
        format("opentype");
   font-weight: normal;
@@ -20,6 +20,12 @@
        format("opentype");
   font-weight: bold;
   font-style: normal;
+}
+@font-face{
+  font-family:"khand";
+  src:url("https://res.cloudinary.com/dtkyyuhzx/raw/upload/v1768833290/Khand-Bold_gmi7uz.ttf")format("truetype");
+  font-weight:700;
+  font-style:normal;
 }
 
 
@@ -38,7 +44,7 @@ body, html {
 }
   
     /* ================= TITLE ================= */
-    .title {
+ .title {
       text-align: left;
       font-family: 'GothamBold', sans-serif;
       font-size: clamp(30px, 6vw, 60px);
@@ -46,7 +52,10 @@ body, html {
       font-style: italic;
       margin-left: 20px;
       color: #7a2c91;
-      margin-bottom: -2px;
+      margin-top: 0;            /* prevent collapsed top margin gap */
+      margin-bottom: -2px;      /* tuck closer to image */
+      position: relative;       /* create stacking context for z-index */
+      z-index: 20;              /* ensure title renders above panels */
       
     }
 
@@ -68,9 +77,10 @@ body, html {
     .panel img {
       width: 100%;
       height: auto;
-      max-height: 1050px;
+      max-height: 1240px;
       display: block;
       border-radius: 6px;
+      margin-top: -50px;
     }
     /* ================= SPEECH BUBBLE OVERLAYS ================= */
     .speech-bubble-overlay {
@@ -119,13 +129,13 @@ body, html {
     /* Added text styling for speech bubbles */
     .bubble-text {
       position: absolute;
-     font-family: "MyComicFont", 'sans-serif';
+     font-family: "khand", 'sans-serif';
       transform: translate(-50%, -50%);
       
     
     }
   .first{
-      font-family: "MyComicFont", 'sans-serif';
+      font-family: "khand";
 font-size: 22px;
 font-weight: 500;
 font-style: italic;
@@ -134,7 +144,7 @@ top: 50%;
 width: 80%;
     }
     .second{
-        font-family: "MyComicFont", "Comic Sans MS";
+        font-family: "khand";
 font-size: 18px;
 font-weight: 500;
 font-style: italic;
@@ -147,7 +157,7 @@ overflow: hidden;
 
     }
      .third{
-        font-family: "MyComicFont", "Comic Sans MS", cursive;
+        font-family: "khand", "Comic Sans MS", cursive;
 font-size: 18px;
 font-weight: 500;
 color: black;
@@ -157,6 +167,7 @@ left: 50%;
 top: 50%;
 align-items: center;
     }
+
 
 
     @keyframes fadeIn {
@@ -211,40 +222,34 @@ align-items: center;
   <!-- NAME POPUP -->
   
 
-  <h1 class="title">Tiger Hero {{NAME}}</h1>
+  <h1 class="title">टाइगर हीरो {{NAME}}</h1>
 
   <section class="comic">
-    <!-- COMIC PANEL WITH OVERLAYS -->
     <div class="panel">
       <!-- Main Comic Image -->
       <img 
-        src="https://res.cloudinary.com/dtkyyuhzx/image/upload/v1768316461/aa2eefd6-50f9-4e2e-b18f-a8c0867f3b2a.png" 
+        src="https://res.cloudinary.com/dtkyyuhzx/image/upload/v1768832855/23e66f91-4e86-479a-8114-9e9fbb1994ab.png" 
         alt="Tiger Hero Comic"
       />
       
       <!-- Added text content inside speech bubble on Panel 3 -->
-      <div class="speech-bubble-overlay bubble-panel-3">
+     <div class="speech-bubble-overlay bubble-panel-3">
         <img 
           src="https://res.cloudinary.com/dhuvclibj/image/upload/v1766573543/Bubbles_Boy_1_iioziw.png" 
           alt="Speech Bubble Panel 3"
         />
-        <div class="bubble-text first">UNDERSTANDING HER PAIN,AYESHA FRIEND {{NAME}} STEPPED IN</div>
+        <div class="bubble-text first">उसे तकलीफ़ में देख, आयशा की सहेली {{NAME}} आगे आई।</div>
       </div>
       
       <!-- Added text content inside speech bubble on Panel 5 -->
-      <div class="speech-bubble-overlay bubble-panel-7">
-        <img 
-          src="https://res.cloudinary.com/dtkyyuhzx/image/upload/w_800,q_auto,f_auto/v1768314883/935118cb-b2b1-467e-a247-fdc9c805a171.png" 
-          alt="Speech Bubble Panel 7"
-        />
-        <div class="bubble-text third">THANK YOU {{NAME}} A FRIEND LIKE YOU IS MY SUPERPOWER</div>
-      </div>
+   
+        
        <div class="speech-bubble-overlay bubble-panel-5">
         <img 
           src="https://res.cloudinary.com/dhuvclibj/image/upload/v1766572070/second_yvq0gs.png" 
           alt="Speech Bubble Panel 5"
         />
-        <div class="bubble-text second">TIGER HERO {{NAME}}! YOU ARE MY TIGER HERO</div>
+        <div class="bubble-text second">शुक्रिया {{NAME}}! तुम मेरे टाइगर हीरो हो।</div>
       </div>
 
 
