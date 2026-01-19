@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
-// Body parsing
+// Body parsing - handle both urlencoded and multipart
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

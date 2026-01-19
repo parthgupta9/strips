@@ -2,17 +2,141 @@
 <html>
 <head>
   <title>Tiger Hero PDF</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    select, input, button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+  </style>
 </head>
 <body>
 
-  <h2>Become the Hero 🐯</h2>
+  <h2 id="heading">हीरो बनिए 🐯</h2>
 
   <!-- 👇 FORM GOES HERE -->
-  <form action="/generate-pdf" method="POST">
-    <input name="heroName" placeholder="Enter hero name" required 
+  <form action="/generate-pdf" method="POST" onsubmit="handleSubmit(event)">
+    <select id="languageSelect" name="language" onchange="changeLanguage()">
+      <option value="hindi">हिंदी (Hindi)</option>
+      <option value="english">English</option>
+      <option value="marathi">मराठी (Marathi)</option>
+    </select>
+    
+    <input id="heroInput" name="heroName" placeholder="हीरो का नाम दर्ज करें" required 
      maxlength="12"/>
-    <button type="submit">Download PDF</button>
+    <button id="submitBtn" type="submit">डाउनलोड करें</button>
   </form>
+
+  <script>
+    const translations = {
+      english: {
+        heading: "Become the Hero 🐯",
+        placeholder: "Enter hero name",
+        button: "Download"
+      },
+      hindi: {
+        heading: "हीरो बनिए 🐯",
+        placeholder: "हीरो का नाम दर्ज करें",
+        button: "डाउनलोड करें"
+      },
+      marathi: {
+        heading: "हिरो व्हा 🐯",
+        placeholder: "हिरोचे नाव टाका",
+        button: "डाउनलोड करा"
+      }
+    };
+
+    // Simple transliteration mapping (English to Devanagari)
+    const transliterationMap = {
+      'a': 'अ', 'aa': 'आ', 'i': 'इ', 'ii': 'ई', 'u': 'उ', 'uu': 'ऊ',
+      'e': 'ए', 'ai': 'ऐ', 'o': 'ओ', 'au': 'औ',
+      'k': 'क', 'kh': 'ख', 'g': 'ग', 'gh': 'घ',
+      'ch': 'च', 'chh': 'छ', 'j': 'ज', 'jh': 'झ',
+      't': 'त', 'th': 'थ', 'd': 'द', 'dh': 'ध',
+      'n': 'न', 'p': 'प', 'ph': 'फ', 'b': 'ब', 'bh': 'भ',
+      'm': 'म', 'y': 'य', 'r': 'र', 'l': 'ल', 'v': 'व',
+      'w': 'व', 'sh': 'श', 's': 'स', 'h': 'ह'
+    };
+
+    function transliterateToDevanagari(text) {
+      if (!text) return text;
+      
+      // Check if already in Devanagari
+      if (/[\u0900-\u097F]/.test(text)) {
+        return text;
+      }
+      
+      // Simple transliteration (basic approach)
+      let result = text.toLowerCase();
+      
+      // Replace common patterns
+      const patterns = [
+        ['sh', 'श'], ['ch', 'च'], ['th', 'थ'], ['kh', 'ख'],
+        ['ph', 'फ'], ['gh', 'घ'], ['dh', 'ध'], ['bh', 'भ'],
+        ['a', 'ा'], ['i', 'ि'], ['u', 'ु'], ['e', 'े'], ['o', 'ो'],
+        ['k', 'क'], ['g', 'ग'], ['j', 'ज'], ['t', 'त'], ['d', 'द'],
+        ['n', 'न'], ['p', 'प'], ['b', 'ब'], ['m', 'म'], ['y', 'य'],
+        ['r', 'र'], ['l', 'ल'], ['v', 'व'], ['w', 'व'], ['s', 'स'], ['h', 'ह']
+      ];
+      
+      for (let [eng, dev] of patterns) {
+        result = result.replace(new RegExp(eng, 'g'), dev);
+      }
+      
+      return result;
+    }
+
+    function changeLanguage() {
+      const lang = document.getElementById('languageSelect').value;
+      const t = translations[lang];
+      
+      document.getElementById('heading').textContent = t.heading;
+      document.getElementById('heroInput').placeholder = t.placeholder;
+      document.getElementById('submitBtn').textContent = t.button;
+    }
+
+    async function handleSubmit(event) {
+      event.preventDefault();
+      
+      const form = event.target;
+      const heroName = document.getElementById('heroInput').value;
+      const language = document.getElementById('languageSelect').value;
+      
+      let translatedName = heroName;
+      
+      // Transliterate to Devanagari for Hindi/Marathi if input is in English
+      if ((language === 'hindi' || language === 'marathi') && /^[a-zA-Z\s]+$/.test(heroName)) {
+        translatedName = transliterateToDevanagari(heroName);
+      }
+      
+      // Send as URL-encoded form data
+      const params = new URLSearchParams();
+      params.append('heroName', translatedName);
+      params.append('language', language);
+      
+      // Submit via fetch to see the result in the same page
+      const response = await fetch('/generate-pdf', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: params
+      });
+      
+      const html = await response.text();
+      document.open();
+      document.write(html);
+      document.close();
+    }
+  </script>
 
 </body>
 </html>
