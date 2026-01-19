@@ -38,6 +38,7 @@ body, html {
 }
   
     /* ================= TITLE ================= */
+        /* ================= TITLE ================= */
     .title {
       text-align: left;
       font-family: 'GothamBold', sans-serif;
@@ -46,7 +47,10 @@ body, html {
       font-style: italic;
       margin-left: 20px;
       color: #7a2c91;
-      margin-bottom: -2px;
+      margin-top: 0;            /* prevent collapsed top margin gap */
+      margin-bottom: -2px;      /* tuck closer to image */
+      position: relative;       /* create stacking context for z-index */
+      z-index: 20;              /* ensure title renders above panels */
       
     }
 
@@ -68,10 +72,12 @@ body, html {
     .panel img {
       width: 100%;
       height: auto;
-      max-height: 1050px;
+      max-height: 1240px;
       display: block;
       border-radius: 6px;
+      margin-top: -50px;
     }
+    
     /* ================= SPEECH BUBBLE OVERLAYS ================= */
     .speech-bubble-overlay {
       position: absolute;
@@ -80,14 +86,14 @@ body, html {
     }
     /* Panel 3 speech bubble (positioned over the middle-left panel) */
       .bubble-panel-3 {
-      top: 19%;
+      top: 28%;
       left: 45%;
       
       max-width: 500px;
       
     }
     .bubble-panel-7{
-        top: 45%;
+        top: 50%;
         left: 3%;
         width: 50%;
         max-width: 400px;
@@ -101,8 +107,8 @@ body, html {
       .bubble-panel-5 {
   position: absolute;
 
-  top: 76%;
-  left: 12%;
+  top: 81%;
+  left: 10%;
 
   width: 100%;
   max-width: 300px;
@@ -130,7 +136,7 @@ font-size: 22px;
 font-weight: 500;
 font-style: italic;
 left: 56%;
-top: 50%;
+top: 26%;
 width: 80%;
     }
     .second{
@@ -141,7 +147,7 @@ font-style: italic;
 color: #783787;
 
 left: 50%;
-top: 50%;
+top: 39%;
 width: 48%;
 overflow: hidden;
 
@@ -154,7 +160,7 @@ color: black;
 font-style: italic;
 width: 80%;
 left: 50%;
-top: 50%;
+top: 10%;
 align-items: center;
     }
 
