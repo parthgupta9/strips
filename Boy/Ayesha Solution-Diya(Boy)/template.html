@@ -38,6 +38,7 @@ body, html {
 }
   
     /* ================= TITLE ================= */
+    /* ================= TITLE ================= */
     .title {
       text-align: left;
       font-family: 'GothamBold', sans-serif;
@@ -46,8 +47,10 @@ body, html {
       font-style: italic;
       margin-left: 20px;
       color: #7a2c91;
-      margin-bottom: -2px;
-      margin-top: -12px;
+      margin-top: 0;            /* prevent collapsed top margin gap */
+      margin-bottom: -2px;      /* tuck closer to image */
+      position: relative;       /* create stacking context for z-index */
+      z-index: 20;              /* ensure title renders above panels */
       
     }
 
@@ -69,10 +72,12 @@ body, html {
     .panel img {
       width: 100%;
       height: auto;
-      max-height: 1090px;
+      max-height: 1240px;
       display: block;
       border-radius: 6px;
+      margin-top: -50px;
     }
+    
     /* ================= SPEECH BUBBLE OVERLAYS ================= */
     .speech-bubble-overlay {
       position: absolute;
@@ -82,14 +87,14 @@ body, html {
     }
     /* Panel 3 speech bubble (positioned over the middle-left panel) */
     .bubble-panel-3 {
-      top: 22%;
-      left: 55%;
-      width: 40%;
-      max-width: 350px;
+      top: 27%;
+      left: 52%;
+      width: 50%;
+      max-width: 430px;
       
     }
     .bubble-panel-7{
-        top: 83%;
+        top: 89%;
         left: 0%;
         width: 35%;
         max-width: 250px;
@@ -101,7 +106,7 @@ body, html {
 
     /* Panel 5 speech bubble (positioned over the bottom-right panel) */
     .bubble-panel-5 {
-      top: 44%;
+      top: 47%;
       left: 2%;
      
       max-width: 470px;
@@ -110,7 +115,7 @@ body, html {
       
     }
     .bubble-panel-9{
-      top:82%;
+      top:84%;
       left:20%;
     
       max-width:300px;
@@ -147,7 +152,7 @@ font-size: 18px;
 font-weight: 500;
 font-style: italic;
 left: 50%;
-top: 48%;
+top: 28%;
 width: 80%;
     }
     .second{
@@ -156,7 +161,7 @@ font-size: 18px;
 font-weight: 500;
 font-style: italic;
 left: 52%;
-top: 52%;
+top: 37%;
 width: 80%;
 
     }
@@ -178,7 +183,7 @@ font-weight: 500;
 font-style: italic;
 color:#783787;
 left: 44%;
-top: 43%;
+top: 26%;
 width: 50%;
 
 }
